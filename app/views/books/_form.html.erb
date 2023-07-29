@@ -1,0 +1,66 @@
+
+<div class="container-md">
+	
+	<div class="row justify-content-center">
+		<div class="col-8">
+			<%= render 'shared/errors', obj: @book %>
+			<%= form_with(model: @book, class:"p-3 mb-3 bg-info rounded", local:true) do |f|%>
+				<div class="row mb-3">
+					<%= f.label :title, class:"col-2 col-form-label" %>
+					<div class="col-10">
+					<%= f.text_field :title, class:"form-control"%>
+					</div>					
+				</div>
+
+				<div class="row mb-3">
+					<%= f.label :author, class:"col-2 col-form-label" %>
+					<div class="col-10">
+					<%= f.collection_select :authors_id, Author.all, :id, :name, class:"form-control" %>
+					</div>					
+				</div>
+
+				<div class="row mb-3">
+					<%= f.label :year, class:"col-2 col-form-label" %>
+					<div class="col-3">
+					<%= f.text_field :year, class:"form-control"%>
+					</div>					
+				</div>
+
+				<div class="row mb-3">
+					<%= f.label :pages, class:"col-2 col-form-label" %>
+					<div class="col-3">
+					<%= f.text_field :pages, class:"form-control"%>
+					</div>					
+				</div>
+
+			  <div class="row mb-3">
+					<%= f.label :category, class:"col-2 col-form-label" %>
+					<div class="col-10">
+					<%= f.collection_select :category_id, Genre.all, :id, :name, class:"form-control" %>
+					</div>			
+				</div>
+
+				<div class="row mb-3">
+					<%= f.label :image, class:"col-2 col-form-label" %>
+					<div class="col-10">
+					<%= f.text_field :image, class:"form-control", placeholder:"Vlož odkaz na url obrázku"%>
+					</div>					
+				</div>
+
+
+				<div class="row mb-3">
+					<%= f.label :description, class:"col-2 col-form-label" %>
+					<div class="col-10">
+					<%= f.text_area :description, class:"form-control", rows:"8" %>
+					</div>
+				</div>
+
+				<div class="row mb-3 justify-content-center">
+					<%= f.submit class:"btn btn-outline-dark btn-md col-2"%>
+				</div>
+			<% end %>
+			<%= link_to '[ Cancel and return to genres page ]', books_path, class:"text-black" %>
+		</div>
+		
+	</div>
+</div>
