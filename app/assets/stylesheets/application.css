@@ -13,3 +13,63 @@
  *= require_tree .
  *= require_self
  */
+
+
+.navbar {
+  background-color: black !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: underline;
+}
+
+.nav-link {
+	color: white !important
+}
+
+#logo{
+	float: left;
+	font-size: 1.7em;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: -1px;
+	font-weight: bold;
+}
+.container{
+	background-color: lightgray;
+	
+}
+
+#home-container{
+	margin-top: 25px;
+	
+}
+
+.image-home-page {
+	background-image: url('aneta-pawlik.jpg');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 350px;
+}
+
+#welcome-sentence {
+	color: white;
+}
+
+#sticky-footer {
+	flex-shrink: none;
+}
+
+html, body {
+	background-color: lightgray;
+	height: 100%;
+}
+
+#page-content {
+	flex: 1 0 auto;
+}
