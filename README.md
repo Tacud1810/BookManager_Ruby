@@ -1,24 +1,8 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Zkušební aplikace pro pohovor. Je možné se registrovat a následně pracovats údaji uživatele.
+Je možné přidávat žánry, autory a knihy.
+Je navázána asociace - kniha není možná uložit bez zvoleného žánru a autora.
+Scaffoldy nebyly použity.
+Použit Bootstrap, částečně vlastní CSS. 
+Databáze - defaultní SQLite.

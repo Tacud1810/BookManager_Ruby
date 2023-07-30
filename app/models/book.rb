@@ -2,7 +2,6 @@ class Book < ApplicationRecord
   belongs_to :genre
   belongs_to :author
   
-
   validates :title, presence: true
   # validates :author, presence: true
   validates :year, presence: true

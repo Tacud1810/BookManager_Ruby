@@ -1,16 +1,51 @@
 
-	<h1 class="text-center mt-4"><%= @book.name%></h1>
+	<h1 class="text-center mt-4"><%= @book.title%></h1>
 	<div class="row justify-content-center">
 		<div class="col-lg-10">
-			<div class="card mt-2" style="height: 350px">
+			<div class="card mt-2" >
 				<div class="card-header fst-italic">
-					Popis
+					Autor: <%= @book.author.name %>
 				</div>
 				<div class="card-body">
-					<p class="card-text"><%= simple_format(@book.description) %></p>
 					
-					
+					<div class="row clearfix">
+						<div class="col-md-5" style="height: 200px">
+							<%= image_tag @book.image, alt: @book.title, height:"300" %>
+						</div>
+						<div class="col-md-7" >
+							<%= simple_format(@book.description) %>
+						</div>
+					</div>
 				
+					<div class="row">	
+					<div class="description-box">
+						<h4>Information</h4>
+							<div class="row">
+								<div class="col-md-4">
+									<h5>Rok</h5>
+								</div>
+								<div class="col-md-8">
+									<%= @book.year%>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<h5>Žánr</h5>
+								</div>
+								<div class="col-md-8">
+									<%= @book.genre.name%>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<h5>Počet stran</h5>
+								</div>
+								<div class="col-md-8">
+									<%= @book.pages %>
+								</div>
+							</div>
+					</div>
+				</div>
 				</div>
 				<div class="card-footer text-body-secondary">
 					<div class="row">

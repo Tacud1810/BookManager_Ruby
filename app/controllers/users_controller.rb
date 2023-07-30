@@ -3,16 +3,20 @@ class UsersController < ApplicationController
 		@user = User.new
 	end
 		
-	# def show
-	# 	@user = User.find(params[:id])
-	# 	@articles = @user.articles
-	# end	
+	def show
+		@user = User.find(params[:id])
+		@books = Book.all
+	end	
+
+	def index
+		@users = User.all
+	end
 
 	def create
 		@user = User.new(user_params)
 		if @user.save
 			flash[:notice] = "Welcome to the Alpha blog #{@user.username}, you have succesfully signed up."
-			redirect_to articles_path
+			redirect_to books_path
 		else 
 			render 'new', status: :unprocessable_entity	
 		end	
@@ -26,7 +30,7 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		if @user.update(user_params)
 			flash[:notice] = "Your account was updated."
-			redirect_to articles_path
+			redirect_to @user
 		else
 			render 'edit', status: :unprocessable_entity
 		end	

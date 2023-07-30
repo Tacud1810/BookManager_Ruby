@@ -73,3 +73,16 @@ html, body {
 #page-content {
 	flex: 1 0 auto;
 }
+
+.description-box {
+	padding-top: 22px;
+	padding-left: 11px;
+	padding-right: 11px;
+	padding-bottom: 10px;
+
+}
+
+.image-container{
+	float: left;
+	margin-right: 20px;
+}

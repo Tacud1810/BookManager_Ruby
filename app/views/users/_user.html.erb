@@ -1,0 +1,33 @@
+<div class="row clearfix justify-content-center ">
+	<% @users.each do |user|%>
+	
+		<div class="col-lg-7 ">
+			<div class="card mt-2" ">
+				
+				<div class="card-header ">
+					<div class="row">
+						<div class="col-lg-6 ">
+							<h5 class="card-title" style="text-indent: 10px"><%= link_to truncate(user.username, length: 25), user_path(user), class:"text-success"%></h5>
+						</div>
+						<div class="col-lg-6 ">
+							<h5 class="card-title" style="text-indent: 10px"><%= user.email %></h5>
+						</div>
+					</div>	
+				</div>
+				
+				<div class="card-footer ">
+					<div class="row">
+						<div class="col-7 ">
+						V knihovně: 
+						</div>
+						<div class="col-5 text-end">
+						<%= link_to 'Upravit', edit_user_path(user), class:"btn btn-outline-warning btn-sm" %>
+						<%= link_to 'Smazat', user_path(user), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:"btn btn-outline-danger btn-sm" %>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>		
+	
+	<% end %>
+</div>

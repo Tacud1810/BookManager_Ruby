@@ -24,11 +24,7 @@ class BooksController < ApplicationController
 	end
 
 	def create
-		@author = @author_id
-		@category = @category_id
 		@book = Book.new(book_params)
-		
-		# @genre.user = User.first
 		if @book.save
 			flash[:notice] = "Genre was created succesfully."
 			redirect_to @book
@@ -48,7 +44,7 @@ class BooksController < ApplicationController
 	end
 
 	def book_params
-		params.require(:book).permit(:title, :author, :year, :pages, :description, :category, :image, :authors_id, :category_id)
+		params.require(:book).permit(:title, :year, :pages, :description, :image, :genre_id, :author_id)
 	end
 
 

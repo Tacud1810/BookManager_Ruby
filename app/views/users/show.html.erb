@@ -1,3 +1,18 @@
-<h1 class="text-center mt-4"><%= @user.username %>'s profile</h1>
+<h1 class="text-center mt-4">Profil uživatele: <%= @user.username %></h1>
 
-<%= render 'articles/article' %>
+<div class="text-center mt-4">
+	<%= link_to "Editace profilu", edit_user_path(@user), class:"btn btn-secondary" %>
+</div>
+
+<div class="row">
+	<div class="col-lg-8">
+		<h3 class="text-right mt-4">Knihovna: </h3>
+
+		Zde budou zobrazeny knihy, které si uživatel přidá do knihovny.
+	</div>
+  <div class="col-lg-4">
+		<h3 class="text-right mt-4">Komentáře: </h3>
+
+		A zde články a komentáře.
+	</div>	
+</div>	
