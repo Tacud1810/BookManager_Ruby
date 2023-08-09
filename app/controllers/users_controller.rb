@@ -43,8 +43,12 @@ before_action :set_user, only: [:show, :edit, :update]
 	end
 
 	def set_user
-		decoded_username = Base64.decode64(session[:user_username])
-		@user = User.find_by(username: decoded_username)
+		if session[:user_username]
+			decoded_username = Base64.decode64(session[:user_username])
+			@user = User.find_by(username: decoded_username)
+		else
+			redirect_to root_path
+		end
 	end
 
 end

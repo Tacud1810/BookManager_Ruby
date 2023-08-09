@@ -5,8 +5,13 @@ class BooksController < ApplicationController
 	end
 
 	def index
-		@books = Book.all
+		if session[:user_username]
+			@books = Book.all
+		else	
+			redirect_to root_path
+		end	
 	end
+
 	def new
 		@book = Book.new
 	end
@@ -40,7 +45,11 @@ class BooksController < ApplicationController
 
 	private
 	def set_book
-		@book = Book.find(params[:id])
+		if session[:user_username]
+			@book = Book.find(params[:id])
+		else 
+			redirect_to root_path
+		end	
 	end
 
 	def book_params

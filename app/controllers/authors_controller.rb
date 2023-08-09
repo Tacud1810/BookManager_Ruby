@@ -5,8 +5,13 @@ class AuthorsController < ApplicationController
 	end
 
 	def index
-		@authors = Author.all
+		if session[:user_username]
+			@authors = Author.all
+		else 
+			redirect_to root_path
+		end	
 	end
+
 	def new
 		@author = Author.new
 	end
@@ -41,7 +46,11 @@ class AuthorsController < ApplicationController
 
 	private
 	def set_author
-		@author = Author.find(params[:id])
+		if session[:user_username]
+			@author = Author.find(params[:id])
+		else 
+			redirect_to root_path
+		end
 	end
 
 	def author_params

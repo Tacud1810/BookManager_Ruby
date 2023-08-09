@@ -5,8 +5,13 @@ class GenresController < ApplicationController
 	end
 
 	def index
-		@genres = Genre.all
+		if session[:user_username]
+			@genres = Genre.all
+		else	
+			redirect_to root_path
+		end	
 	end
+
 	def new
 		@genre = Genre.new
 	end
@@ -41,7 +46,11 @@ class GenresController < ApplicationController
 
 	private
 	def set_genre
-		@genre = Genre.find(params[:id])
+		if session[:user_username]
+			@genre = Genre.find(params[:id])
+		else 
+			redirect_to root_path
+		end	
 	end
 
 	def genre_params
