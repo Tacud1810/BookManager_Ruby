@@ -5,7 +5,9 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <% if logged_in? %>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         
         <li class="nav-item dropdown">
@@ -41,7 +43,31 @@
         <li class="nav-item">
           <%= link_to 'Uživatelé', users_path, class:"nav-link" %>
         </li>
+        
       </ul>
+      <% else %>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      </ul>  
+      <% end %>
+      <ul class="navbar-nav d-flex justify-content-end mb-2 mb-lg-0 ">
+        
+        <% if logged_in? %>
+          <li class="nav-item">
+            <%= link_to "#{current_user.username} (#{current_user.email})", user_path(current_user), class:"nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Odhlášení', login_path, class:"nav-link", data: {turbo_method: :delete} %>
+          </li>
+        <% else %>  
+          <li class="nav-item">
+            <%= link_to 'Přihlášení', login_path, class:"nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Registrace', new_user_path, class:"nav-link" %>
+          </li>
+        <% end %>  
+      </ul>
+      
 
     </div>
   </div>
