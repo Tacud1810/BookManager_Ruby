@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
-before_action :set_user, only: [:show, :edit, :update]
+before_action :set_user, only: [:show, :edit, :update, :destroy]
+before_action :check_session, except: [:create, :new]
+before_action :require_same_user, only: [:edit,  :update, :destroy]
 
 	def new
 		@user = User.new
 	end
 		
 	def show
-		@books = Book.all
 	end	
 
 	def index
@@ -16,8 +17,8 @@ before_action :set_user, only: [:show, :edit, :update]
 	def create
 		@user = User.new(user_params)
 		if @user.save
-			session[:user_username] = Base64.encode64(@user.username)
-			flash[:notice] = "Welcome to the Alpha blog #{@user.username}, you have succesfully signed up."
+			set_session
+			flash[:notice] = "Welcome to the Book manager #{@user.username}, you have succesfully signed up."
 			redirect_to books_path
 		else 
 			render 'new', status: :unprocessable_entity	
@@ -29,12 +30,20 @@ before_action :set_user, only: [:show, :edit, :update]
 
 	def update
 		if @user.update(user_params)
-			flash[:notice] = "Your account was updated."
-			redirect_to books_path
+			set_session if current_user == @user
+			flash[:notice] = "Účet byl upraven."
+			redirect_to @user
 		else
 			render 'edit', status: :unprocessable_entity
 		end	
 	end	
+
+	def destroy
+		@user.destroy
+		session[:user_username] = nil if current_user == @user
+		flash[:notice] = "Účet byl smazán."
+		redirect_to root_path
+	end
 
 	
 	private
@@ -43,11 +52,17 @@ before_action :set_user, only: [:show, :edit, :update]
 	end
 
 	def set_user
-		if session[:user_username]
-			decoded_username = Base64.decode64(session[:user_username])
-			@user = User.find_by(username: decoded_username)
-		else
-			redirect_to root_path
+		@user = User.find(params[:id])
+	end
+
+	def set_session
+		session[:user_username] = Base64.encode64(@user.username)
+	end
+
+	def require_same_user
+		if current_user != @user && !current_user.admin?
+			flash[:alert] = "Můžeš editovat pouze svůj účet."
+			redirect_to current_user
 		end
 	end
 

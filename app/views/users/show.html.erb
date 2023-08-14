@@ -1,7 +1,9 @@
 <h1 class="text-center mt-4">Profil uživatele: <%= @user.username %></h1>
 
 <div class="text-center mt-4">
-	<%= link_to "Editace profilu", edit_user_path(@user), class:"btn btn-secondary" %>
+	<% if @user == current_user %>
+		<%= link_to "Editace profilu", edit_user_path(@user), class:"btn btn-secondary" %>
+	<% end %>
 </div>
 
 <div class="row">

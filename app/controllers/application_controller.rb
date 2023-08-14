@@ -11,4 +11,9 @@ class ApplicationController < ActionController::Base
 		!!current_user
 	end
 
+	def check_session
+		if not session[:user_username]
+			redirect_to root_path
+		end
+	end
 end

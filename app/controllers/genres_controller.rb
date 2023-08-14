@@ -1,15 +1,12 @@
 class GenresController < ApplicationController
 	before_action :set_genre, only:[:show, :update, :edit, :destroy]
+	before_action :check_session
 
 	def show
 	end
 
 	def index
-		if session[:user_username]
 			@genres = Genre.all
-		else	
-			redirect_to root_path
-		end	
 	end
 
 	def new
@@ -46,11 +43,7 @@ class GenresController < ApplicationController
 
 	private
 	def set_genre
-		if session[:user_username]
 			@genre = Genre.find(params[:id])
-		else 
-			redirect_to root_path
-		end	
 	end
 
 	def genre_params

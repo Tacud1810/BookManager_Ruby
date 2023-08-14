@@ -21,8 +21,10 @@
 						V knihovně: 
 						</div>
 						<div class="col-5 text-end">
-						<%= link_to 'Upravit', edit_user_path(user), class:"btn btn-outline-warning btn-sm" %>
-						<%= link_to 'Smazat', user_path(user), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:"btn btn-outline-danger btn-sm" %>
+							<% if user == current_user || current_user.admin? %>
+								<%= link_to 'Upravit', edit_user_path(user), class:"btn btn-outline-warning btn-sm" %>
+								<%= link_to 'Smazat', user_path(user), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:"btn btn-outline-danger btn-sm" %>
+							<% end %>
 						</div>
 					</div>	
 				</div>

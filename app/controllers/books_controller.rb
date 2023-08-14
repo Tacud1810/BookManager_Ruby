@@ -1,15 +1,12 @@
 class BooksController < ApplicationController
 	before_action :set_book, only:[:show, :update, :edit, :destroy]
+	before_action :check_session
 
 	def show
 	end
 
 	def index
-		if session[:user_username]
-			@books = Book.all
-		else	
-			redirect_to root_path
-		end	
+		@books = Book.all
 	end
 
 	def new
@@ -45,11 +42,7 @@ class BooksController < ApplicationController
 
 	private
 	def set_book
-		if session[:user_username]
-			@book = Book.find(params[:id])
-		else 
-			redirect_to root_path
-		end	
+		@book = Book.find(params[:id])
 	end
 
 	def book_params
