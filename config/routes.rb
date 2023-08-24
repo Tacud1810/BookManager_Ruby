@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :books
   resources :users
   resources :authors
+  
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'login', to: 'sessions#destroy'
